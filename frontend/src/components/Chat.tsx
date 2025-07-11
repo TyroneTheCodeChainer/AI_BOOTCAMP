@@ -85,7 +85,7 @@ export default function Chat() {
       console.error('Error:', error);
       const errorMessage: Message = {
         role: 'assistant',
-        content: 'Sorry, I\'m having trouble connecting right now. Please try again in a moment!',
+        content: 'Sorry, I&apos;m having trouble connecting right now. Please try again in a moment!',
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
