@@ -23,7 +23,7 @@ export default function Chat() {
   useEffect(() => {
     const welcomeMessage: Message = {
       role: 'assistant',
-      content: "👋 Hi there! I'm your AI assistant. I'm here to help you with any questions, tasks, or just to chat! What would you like to talk about?"
+      content: "👋 Hi there! I&apos;m your AI assistant. I&apos;m here to help you with any questions, tasks, or just to chat! What would you like to talk about?"
     };
     setMessages([welcomeMessage]);
   }, []);
@@ -96,7 +96,7 @@ export default function Chat() {
   const clearChat = () => {
     const welcomeMessage: Message = {
       role: 'assistant',
-      content: "👋 Hi there! I'm your AI assistant. I'm here to help you with any questions, tasks, or just to chat! What would you like to talk about?"
+      content: "👋 Hi there! I&apos;m your AI assistant. I&apos;m here to help you with any questions, tasks, or just to chat! What would you like to talk about?"
     };
     setMessages([welcomeMessage]);
   };
@@ -106,7 +106,7 @@ export default function Chat() {
       <div className="flex justify-between items-center mb-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">🤖 AI Chatbot</h1>
-          <p className="text-sm text-gray-600">Ask me anything - I'm here to help!</p>
+          <p className="text-sm text-gray-600">Ask me anything - I&apos;m here to help!</p>
         </div>
         <button
           onClick={clearChat}
