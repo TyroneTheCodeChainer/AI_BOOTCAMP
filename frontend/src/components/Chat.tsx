@@ -106,7 +106,7 @@ export default function Chat() {
       <div className="flex justify-between items-center mb-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">🤖 AI Chatbot</h1>
-          <p className="text-sm text-gray-600">Ask me anything - I'm here to help!</p>
+          <p className="text-sm text-gray-600">Ask me anything - I&apos;m here to help!</p>
         </div>
         <button
           onClick={clearChat}
