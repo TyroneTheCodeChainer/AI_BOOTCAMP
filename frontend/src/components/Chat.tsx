@@ -23,7 +23,7 @@ export default function Chat() {
   useEffect(() => {
     const welcomeMessage: Message = {
       role: 'assistant',
-      content: "👋 Hello12345"
+      content: "👋 Hello ! Ask me anything - I'm here to help"
     };
     setMessages([welcomeMessage]);
   }, []);
