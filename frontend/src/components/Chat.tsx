@@ -96,7 +96,8 @@ export default function Chat() {
   const clearChat = () => {
     const welcomeMessage: Message = {
       role: 'assistant',
-      <p className="text-sm text-gray-600">Ask me anything - I&apos;m here to help!</p>    };
+      content: "👋 Hi there! I'm your AI assistant. I'm here to help you with any questions, tasks, or just to chat! What would you like to talk about?"
+    };
     setMessages([welcomeMessage]);
   };
 
@@ -166,4 +167,4 @@ export default function Chat() {
       </form>
     </div>
   );
-} 
+}
