@@ -10,7 +10,7 @@ import os
 from typing import Optional
 
 # Initialize FastAPI application with a title
-app = FastAPI(title="OpenAI Chat API")
+app = FastAPI(title="Public AI Chatbot API")
 
 # Configure CORS (Cross-Origin Resource Sharing) middleware
 # This allows the API to be accessed from different domains/origins
@@ -22,31 +22,37 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers in requests
 )
 
+# Get OpenAI API key from environment variable
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    raise ValueError("OPENAI_API_KEY environment variable is required")
+
+# Initialize OpenAI client with server-side API key
+client = OpenAI(api_key=OPENAI_API_KEY)
+
 # Define the data model for chat requests using Pydantic
 # This ensures incoming request data is properly validated
 class ChatRequest(BaseModel):
-    developer_message: str  # Message from the developer/system
     user_message: str      # Message from the user
-    model: Optional[str] = "gpt-4.1-mini"  # Optional model selection with default
-    api_key: str          # OpenAI API key for authentication
+    model: Optional[str] = "gpt-4o-mini"  # Optional model selection with default
+    system_message: Optional[str] = "You are a helpful, friendly, and knowledgeable AI assistant. Provide clear, concise, and accurate responses. Be engaging and conversational while maintaining professionalism."
 
 # Define the main chat endpoint that handles POST requests
 @app.post("/api/chat")
 async def chat(request: ChatRequest):
     try:
-        # Initialize OpenAI client with the provided API key
-        client = OpenAI(api_key=request.api_key)
-        
         # Create an async generator function for streaming responses
         async def generate():
             # Create a streaming chat completion request
             stream = client.chat.completions.create(
                 model=request.model,
                 messages=[
-                    {"role": "developer", "content": request.developer_message},
+                    {"role": "system", "content": request.system_message},
                     {"role": "user", "content": request.user_message}
                 ],
-                stream=True  # Enable streaming response
+                stream=True,  # Enable streaming response
+                max_tokens=1000,  # Limit response length for cost control
+                temperature=0.7  # Add some creativity to responses
             )
             
             # Yield each chunk of the response as it becomes available
@@ -59,12 +65,24 @@ async def chat(request: ChatRequest):
     
     except Exception as e:
         # Handle any errors that occur during processing
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Error in chat endpoint: {str(e)}")
+        raise HTTPException(status_code=500, detail="Sorry, I'm having trouble processing your request right now. Please try again later.")
 
 # Define a health check endpoint to verify API status
 @app.get("/api/health")
 async def health_check():
-    return {"status": "ok"}
+    return {"status": "ok", "message": "AI Chatbot API is running"}
+
+# Define a simple info endpoint
+@app.get("/")
+async def root():
+    return {
+        "message": "Welcome to the Public AI Chatbot API!",
+        "endpoints": {
+            "chat": "/api/chat",
+            "health": "/api/health"
+        }
+    }
 
 # Entry point for running the application directly
 if __name__ == "__main__":

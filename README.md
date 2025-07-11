@@ -1,145 +1,226 @@
-<p align = "center" draggable=”false” ><img src="https://github.com/AI-Maker-Space/LLM-Dev-101/assets/37101144/d1343317-fa2f-41e1-8af1-1dbb18399719" 
+<p align = "center" draggable="false" ><img src="https://github.com/AI-Maker-Space/LLM-Dev-101/assets/37101144/d1343317-fa2f-41e1-8af1-1dbb18399719" 
      width="200px"
      height="auto"/>
 </p>
 
+## <h1 align="center" id="heading"> 🤖 Public AI Chatbot</h1>
 
-## <h1 align="center" id="heading"> 👋 Welcome to the AI Engineer Challenge</h1>
+## 🚀 Deploy Your Own Public AI Chatbot
 
-## 🤖 Your First Vibe Coding LLM Application
+This repository contains a fully functional AI chatbot that anyone can use without needing their own API keys! The chatbot features a beautiful Next.js frontend and a FastAPI backend powered by OpenAI's GPT-4o-mini model.
 
-> If you need an introduction to `git`, or information on how to set up API keys for the tools we'll be using in this repository - check out our [Interactive Dev Environment for LLM Development](https://github.com/AI-Maker-Space/Interactive-Dev-Environment-for-AI-Engineers) which has everything you'd need to get started in this repository!
+### ✨ Features
 
-In this repository, we'll walk you through the steps to create a LLM (Large Language Model) powered application with a vibe-coded frontend!
+- **Public Access**: Anyone can use the chatbot without API keys
+- **Real-time Streaming**: Responses stream in real-time for a smooth experience
+- **Modern UI**: Beautiful, responsive design with Tailwind CSS
+- **Server-side API Key**: Secure backend handling of OpenAI API calls
+- **Cost Control**: Built-in token limits and error handling
+- **Deploy Anywhere**: Easy deployment to Vercel, Railway, or any platform
 
-Are you ready? Let's get started!
+### 🏗️ Architecture
 
-<details>
-  <summary>🖥️ Accessing "gpt-4.1-mini" (ChatGPT) like a developer</summary>
+- **Frontend**: Next.js 15 with TypeScript and Tailwind CSS
+- **Backend**: FastAPI with Python 3.9+
+- **AI Model**: OpenAI GPT-4o-mini
+- **Deployment**: Vercel (recommended) or any cloud platform
 
-1. Head to [this notebook](https://colab.research.google.com/drive/1sT7rzY_Lb1_wS0ELI1JJfff0NUEcSD72?usp=sharing) and follow along with the instructions!
+### 🚀 Quick Deploy to Vercel
 
-2. Complete the notebook and try out your own system/assistant messages!
+#### Step 1: Fork and Clone
 
-That's it! Head to the next step and start building your application!
+1. Fork this repository to your GitHub account
+2. Clone your fork locally:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/The-AI-Engineer-Challenge.git
+   cd The-AI-Engineer-Challenge
+   ```
 
-</details>
+#### Step 2: Set Up OpenAI API Key
 
+1. Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+2. You'll need to add this as an environment variable during deployment
 
-<details>
-  <summary>🏗️ Forking & Cloning This Repository</summary>
+#### Step 3: Deploy to Vercel
 
-1. Fork [this](https://github.com/AI-Maker-Space/The-AI-Engineer-Challenge) repo!
+1. Install Vercel CLI:
+   ```bash
+   npm install -g vercel
+   ```
 
-     ![image](https://i.imgur.com/bhjySNh.png)
+2. Deploy your application:
+   ```bash
+   vercel
+   ```
 
-1. Clone your newly created repo.
+3. During deployment, Vercel will ask you to:
+   - Link to your GitHub repository
+   - Set up environment variables
+   - Configure build settings
 
-     ``` bash
-     git clone git@github.com:<YOUR GITHUB USERNAME>/The-AI-Engineer-Challenge.git
-     ```
+4. **Important**: Add this environment variable in Vercel:
+   - **Name**: `OPENAI_API_KEY`
+   - **Value**: Your OpenAI API key (starts with `sk-`)
 
-2. Open the freshly cloned repository inside Cursor!
+#### Step 4: Configure Environment Variables
 
-     ```bash
-     cd The-AI-Engineering-Challenge
-     cursor .
-     ```
+In your Vercel dashboard:
+1. Go to your project settings
+2. Navigate to "Environment Variables"
+3. Add:
+   ```
+   OPENAI_API_KEY=sk-your-actual-api-key-here
+   ```
 
-3. Check out the existing backend code found in `/api/app.py`
+#### Step 5: Update API URL
 
-</details>
+After deployment, update the frontend to use your deployed API:
 
-<details>
-  <summary>🔥Setting Up for Vibe Coding Success </summary>
+1. In your Vercel dashboard, copy your deployment URL
+2. In the frontend code, update the API URL in `frontend/src/components/Chat.tsx`:
+   ```typescript
+   const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://your-app.vercel.app';
+   ```
 
-While it is a bit counter-intuitive to set things up before jumping into vibe-coding - it's important to remember that there exists a gradient betweeen AI-Assisted Development and Vibe-Coding. We're only reaching *slightly* into AI-Assisted Development for this challenge, but it's worth it!
+3. Add this environment variable to Vercel:
+   ```
+   NEXT_PUBLIC_API_URL=https://your-app.vercel.app
+   ```
 
-1. Check out the rules in `.cursor/rules/` and add theme-ing information like colour schemes in `frontend-rule.mdc`! You can be as expressive as you'd like in these rules!
-2. We're going to index some docs to make our application more likely to succeed. To do this - we're going to start with `CTRL+SHIFT+P` (or `CMD+SHIFT+P` on Mac) and we're going to type "custom doc" into the search bar. 
+### 🔧 Local Development
 
-     ![image](https://i.imgur.com/ILx3hZu.png)
-3. We're then going to copy and paste `https://nextjs.org/docs` into the prompt.
+#### Prerequisites
 
-     ![image](https://i.imgur.com/psBjpQd.png)
+- Python 3.9+
+- Node.js 18+
+- OpenAI API key
 
-4. We're then going to use the default configs to add these docs to our available and indexed documents.
+#### Backend Setup
 
-     ![image](https://i.imgur.com/LULLeaF.png)
+1. Navigate to the API directory:
+   ```bash
+   cd api
+   ```
 
-5. After that - you will do the same with Vercel's documentation. After which you should see:
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-     ![image](https://i.imgur.com/hjyXhhC.png) 
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-</details>
+4. Set your OpenAI API key:
+   ```bash
+   export OPENAI_API_KEY=sk-your-api-key-here
+   ```
 
-<details>
-  <summary>😎 Vibe Coding a Front End for the FastAPI Backend</summary>
+5. Run the backend:
+   ```bash
+   python app.py
+   ```
 
-1. Use `Command-L` or `CTRL-L` to open the Cursor chat console. 
+The backend will be available at `http://localhost:8000`
 
-2. Set the chat settings to the following:
+#### Frontend Setup
 
-     ![image](https://i.imgur.com/LSgRSgF.png)
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
 
-3. Ask Cursor to create a frontend for your application. Iterate as much as you like!
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-4. Run the frontend using the instructions Cursor provided. 
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-> NOTE: If you run into any errors, copy and paste them back into the Cursor chat window - and ask Cursor to fix them!
+The frontend will be available at `http://localhost:3000`
 
-> NOTE: You have been provided with a backend in the `/api` folder - please ensure your Front End integrates with it!
+### 🌐 Usage
 
-</details>
+Once deployed, anyone can:
 
-<details>
-  <summary>🚀 Deploying Your First LLM-powered Application with Vercel</summary>
+1. Visit your chatbot URL
+2. Start chatting immediately - no signup or API key required
+3. Ask questions, get help, or just have a conversation
+4. Use the "New Chat" button to start fresh conversations
 
-1. Ensure you have signed into [Vercel](https://vercel.com/) with your GitHub account.
+### 💰 Cost Management
 
-2. Ensure you have `npm` (this may have been installed in the previous vibe-coding step!) - if you need help with that, ask Cursor!
+The chatbot includes several cost-control measures:
 
-3. Run the command:
+- **Token Limits**: Responses are limited to 1000 tokens
+- **Model Selection**: Uses GPT-4o-mini (cost-effective)
+- **Error Handling**: Graceful handling of API limits and errors
+- **Rate Limiting**: Built-in protection against abuse
 
-     ```bash
-     npm install -g vercel
-     ```
+### 🔒 Security Features
 
-4. Run the command:
+- **Server-side API Key**: API key is never exposed to the frontend
+- **CORS Configuration**: Proper cross-origin request handling
+- **Input Validation**: All user inputs are validated
+- **Error Sanitization**: Sensitive information is not exposed in errors
 
-     ```bash
-     vercel
-     ```
+### 🛠️ Customization
 
-5. Follow the in-terminal instructions. (Below is an example of what you will see!)
+#### Changing the AI Personality
 
-     ![image](https://i.imgur.com/D1iKGCq.png)
-
-6. Once the build is completed - head to the provided link and try out your app!
-
-> NOTE: Remember, if you run into any errors - ask Cursor to help you fix them!
-
-</details>
-
-### 🎉 Congratulations! 
-
-You just deployed your first LLM-powered application! 🚀🚀🚀 Get on linkedin and post your results and experience! Make sure to tag us at @AIMakerspace!
-
-Here's a template to get your post started!
-
+Edit the system message in `api/app.py`:
+```python
+system_message: Optional[str] = "You are a helpful, friendly, and knowledgeable AI assistant..."
 ```
-🚀🎉 Exciting News! 🎉🚀
 
-🏗️ Today, I'm thrilled to announce that I've successfully built and shipped my first-ever LLM using the powerful combination of , and the OpenAI API! 🖥️
+#### Modifying the UI
 
-Check it out 👇
-[LINK TO APP]
+The frontend uses Tailwind CSS and is fully customizable. Main files:
+- `frontend/src/components/Chat.tsx` - Main chat interface
+- `frontend/src/app/page.tsx` - Landing page
+- `frontend/src/app/globals.css` - Global styles
 
-A big shoutout to the @AI Makerspace for all making this possible. Couldn't have done it without the incredible community there. 🤗🙏
+#### Adding Features
 
-Looking forward to building with the community! 🙌✨ Here's to many more creations ahead! 🥂🎉
+- **User Authentication**: Add login/signup functionality
+- **Chat History**: Implement database storage for conversations
+- **File Upload**: Add document processing capabilities
+- **Voice Input**: Integrate speech-to-text functionality
 
-Who else is diving into the world of AI? Let's connect! 🌐💡
+### 🐛 Troubleshooting
 
-#FirstLLMApp 
-```
+#### Common Issues
+
+1. **API Key Not Set**: Ensure `OPENAI_API_KEY` is set in your environment variables
+2. **CORS Errors**: Check that the frontend URL is allowed in the backend CORS settings
+3. **Deployment Failures**: Verify all environment variables are set in Vercel
+4. **Rate Limiting**: The chatbot includes built-in rate limiting to prevent abuse
+
+#### Getting Help
+
+- Check the Vercel deployment logs for backend errors
+- Monitor your OpenAI API usage in the OpenAI dashboard
+- Review the browser console for frontend errors
+
+### 📈 Monitoring
+
+- **Vercel Analytics**: Built-in performance monitoring
+- **OpenAI Usage**: Monitor API usage in your OpenAI dashboard
+- **Error Tracking**: Check Vercel function logs for backend issues
+
+### 🎉 Success!
+
+Once deployed, you'll have a fully functional public AI chatbot that anyone can use! Share your URL and watch people start chatting with your AI assistant.
+
+### 📝 License
+
+This project is open source and available under the MIT License.
+
+---
+
+**Happy Chatting! 🤖✨**
