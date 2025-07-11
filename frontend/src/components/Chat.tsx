@@ -85,7 +85,7 @@ export default function Chat() {
       console.error('Error:', error);
       const errorMessage: Message = {
         role: 'assistant',
-        content: 'Sorry, I&apos;m having trouble connecting right now. Please try again in a moment!',
+        content: 'Sorry, I\'m having trouble connecting right now. Please try again in a moment!',
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -96,7 +96,7 @@ export default function Chat() {
   const clearChat = () => {
     const welcomeMessage: Message = {
       role: 'assistant',
-      content: "👋 Hi there! I&apos;m your AI assistant. I&apos;m here to help you with any questions, tasks, or just to chat! What would you like to talk about?"
+      content: "👋 Hi there! I'm your AI assistant. I'm here to help you with any questions, tasks, or just to chat! What would you like to talk about?"
     };
     setMessages([welcomeMessage]);
   };
