@@ -106,8 +106,7 @@ export default function Chat() {
       <div className="flex justify-between items-center mb-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">🤖 AI Chatbot</h1>
-          <p className="text-sm text-gray-600">Ask me anything - I&apos;m here to help!</p>
-        </div>
+          content: "👋 Hi there! I'm your AI assistant. I'm here to help you with any questions, tasks, or just to chat! What would you like to talk about?"        </div>
         <button
           onClick={clearChat}
           className="px-4 py-2 text-sm bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
